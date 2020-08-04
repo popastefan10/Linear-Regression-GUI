@@ -8,15 +8,6 @@ import matplotlib.pyplot as plt
 from Plot import Plot
 from PlotData import PlotData
 
-BTN_HEIGHT = 30
-BTN_WIDTH = 90
-
-root = tk.Tk()
-root.title("Linear regression in python")
-min_root_width = 400
-min_root_height = 500
-root.minsize(min_root_width, min_root_height)
-
 
 class MainApplication(tk.Frame):
     """
@@ -28,6 +19,10 @@ class MainApplication(tk.Frame):
 
     Attributes
     ----------
+    BTN_HEIGHT : 30
+        The height value that is used for all the buttons inside this class
+    BTN_WIDTH : 90
+        The width value that is used for all the buttons inside this class
     parent :
         The parent window (or widget)
     plot : Plot
@@ -103,6 +98,9 @@ class MainApplication(tk.Frame):
         Returns True if the "s" string is a float number, False otherwise.
     """
 
+    BTN_HEIGHT = 30
+    BTN_WIDTH = 90
+
     def __init__(self, parent, **args):
         """
         Parameters
@@ -155,27 +153,27 @@ class MainApplication(tk.Frame):
 
     def create_new_plot_btn(self):
         new_plot_btn = Button(self, text="New plot", command=self.new_plot_clb, padx=5)
-        new_plot_btn.place(x=10, y=10, height=BTN_HEIGHT, width=BTN_WIDTH)
+        new_plot_btn.place(x=10, y=10, height=MainApplication.BTN_HEIGHT, width=MainApplication.BTN_WIDTH)
         return new_plot_btn
 
     def create_x_label(self):
         x_label = Label(self, text="X: ", bg="white")
-        x_label.place(x=110, y=50, height=BTN_HEIGHT)
+        x_label.place(x=110, y=50, height=MainApplication.BTN_HEIGHT)
         return x_label
 
     def create_x_entry(self):
         x_entry = Entry(self, width=10)
-        x_entry.place(x=130, y=50, height=BTN_HEIGHT)
+        x_entry.place(x=130, y=50, height=MainApplication.BTN_HEIGHT)
         return x_entry
 
     def create_y_label(self):
         y_label = Label(self, text="Y: ", bg="white")
-        y_label.place(x=200, y=50, height=BTN_HEIGHT)
+        y_label.place(x=200, y=50, height=MainApplication.BTN_HEIGHT)
         return y_label
 
     def create_y_entry(self):
         y_entry = Entry(self, width=10)
-        y_entry.place(x=220, y=50, height=BTN_HEIGHT)
+        y_entry.place(x=220, y=50, height=MainApplication.BTN_HEIGHT)
         return y_entry
 
     def add_point_clb(self):
@@ -194,7 +192,7 @@ class MainApplication(tk.Frame):
 
     def create_add_point_btn(self):
         add_point_btn = Button(self, text="Add point", command=self.add_point_clb, padx=5)
-        add_point_btn.place(x=10, y=50, height=BTN_HEIGHT, width=BTN_WIDTH)
+        add_point_btn.place(x=10, y=50, height=MainApplication.BTN_HEIGHT, width=MainApplication.BTN_WIDTH)
         return add_point_btn
 
     def add_multiple_points_clb(self):
@@ -213,7 +211,7 @@ class MainApplication(tk.Frame):
 
     def create_update_line_btn(self):
         update_line_btn = Button(self, text="Update line", command=self.update_line_clb)
-        update_line_btn.place(x=10, y=125, height=BTN_HEIGHT, width=BTN_WIDTH)
+        update_line_btn.place(x=10, y=125, height=MainApplication.BTN_HEIGHT, width=MainApplication.BTN_WIDTH)
         return update_line_btn
 
     @staticmethod
@@ -223,25 +221,3 @@ class MainApplication(tk.Frame):
             return True
         except ValueError:
             return False
-
-
-root.update()
-MainApp = MainApplication(root, width=root.winfo_width(), height=root.winfo_height(), bg="white")
-MainApp.grid_propagate(0)
-MainApp.grid(row=0, column=0)
-
-
-def on_resize(event):
-    """
-    Callback used to resize MainApp when the master window is resized.
-    """
-
-    new_width = max(event.width, min_root_width)
-    new_height = max(event.height, min_root_height)
-    MainApp["width"] = new_width
-    MainApp["height"] = new_height
-
-
-root.bind("<Configure>", on_resize)
-
-root.mainloop()
