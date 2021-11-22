@@ -4,6 +4,13 @@ This is a GUI that I created in order to help for better visualization of simple
 I used matplotlib to make the plot which displays the points and the best-fitting line, while for creating the GUI I used tkinter widgets.
 This is my first project in python, so every feedback regarding documenting python code, coding structure and coding techniques are really welcome.
 
+## Requirements
+
+* Python 3
+* NumPy
+* Matplotlib
+* Tkinter
+
 ## How to use
 
 Run the "examples.py" file and the GUI should appear on your screen.
