@@ -109,7 +109,7 @@ class PlotData(LabelFrame):
     def add_point(self, x, y):
         self.points.append(Point(x, y))
         crt_len = len(self.points)
-        self.points_list_box.insert(END, f"Point no.{crt_len}: ({x}, {y})")
+        self.points_list_box.insert(END, f"Point no.{crt_len}: " + "({:.3f}, {:.3f})".format(x, y))
         self.update_points_label()
 
     def get_alpha(self):
@@ -131,23 +131,23 @@ class PlotData(LabelFrame):
         if coef is None:
             return "undefined"
         else:
-            return coef
+            return "{:.3f}".format(coef)
 
     def create_alpha_label(self):
-        alpha_label = Label(self, text=f"Alpha: " + str(self.get_coef_string(self.alpha)), bg="white")
+        alpha_label = Label(self, text=f"Alpha: " + self.get_coef_string(self.alpha), bg="white")
         alpha_label.place(x=5, y=5)
         return alpha_label
 
     def update_alpha_label(self):
-        self.alpha_label["text"] = f"Alpha: " + str(self.get_coef_string(self.alpha))
+        self.alpha_label["text"] = f"Alpha: " + self.get_coef_string(self.alpha)
 
     def create_beta_label(self):
-        beta_label = Label(self, text=f"Beta: " + str(self.get_coef_string(self.beta)), bg="white")
+        beta_label = Label(self, text=f"Beta: " + self.get_coef_string(self.beta), bg="white")
         beta_label.place(x=5, y=25)
         return beta_label
 
     def update_beta_label(self):
-        self.beta_label["text"] = f"Beta: " + str(self.get_coef_string(self.beta))
+        self.beta_label["text"] = f"Beta: " + self.get_coef_string(self.beta)
 
     def create_points_label(self):
         points_label = Label(self, text=f"There are {len(self.points)} points in this plot:", bg="white")
@@ -155,13 +155,15 @@ class PlotData(LabelFrame):
         return points_label
 
     def update_points_label(self):
-        self.points_label["text"] = f"There are {len(self.points)} points in this plot:"
+        label_singular = "There is 1 point in this plot:"
+        label_plural = f"There are {len(self.points)} points in this plot:"
+        self.points_label["text"] = label_singular if len(self.points) == 1 else label_plural
 
     def create_points_list_box(self):
         points_scrollbar = Scrollbar(self, orient=VERTICAL, width=16)
         points_scrollbar.place(x=310, y=75)
 
-        points_list_box = Listbox(self, width=50, height=12, yscrollcommand=points_scrollbar.set)
+        points_list_box = Listbox(self, width=50, height=10, yscrollcommand=points_scrollbar.set)
         points_scrollbar.config(command=points_list_box.yview)
 
         points_list_box.place(x=5, y=75)

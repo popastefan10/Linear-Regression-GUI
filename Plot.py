@@ -142,6 +142,7 @@ class Plot:
 
         self.delete_existing_lines()
         plt.plot(x, y, color="blue")
+        plt.draw()
 
     def delete_existing_lines(self):
         while len(self.ax.lines):
@@ -161,8 +162,8 @@ class Plot:
             self.update_best_fitting_line()
         if self.check_state is True and event.button == 1 and event.xdata is not None and event.ydata is not None:
             self.add_point(event.xdata, event.ydata)
-            self.parent.plot_data.update_data(event.xdata, event.ydata,
-                                              self.lin_reg.get_alpha(), self.lin_reg.get_beta())
+            # self.parent.plot_data.update_data(event.xdata, event.ydata,
+            #                                   self.lin_reg.get_alpha(), self.lin_reg.get_beta())
 
     def disconnect_on_click_clb(self):
         """ Disconnects on_click callback from the figure.
