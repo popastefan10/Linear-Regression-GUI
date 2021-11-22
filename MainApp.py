@@ -188,7 +188,9 @@ class MainApplication(tk.Frame):
             x = float(strx)
             y = float(stry)
             self.plot.add_point(x, y)
-            self.plot_data.add_point(x, y)
+
+            plot_lin_reg = self.plot.lin_reg
+            self.plot_data.update_data(x, y, plot_lin_reg.get_alpha(), plot_lin_reg.get_beta())
 
     def create_add_point_btn(self):
         add_point_btn = Button(self, text="Add point", command=self.add_point_clb, padx=5)
