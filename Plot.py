@@ -1,3 +1,4 @@
+from tkinter import Canvas
 import matplotlib.pyplot as plt
 import numpy as np
 from LinearRegression import LinearRegression
@@ -124,6 +125,7 @@ class Plot:
         self.points.append(Point(x, y))
         self.lin_reg.add_point(x, y)
         plt.scatter(x, y, color="red")
+        plt.draw()
 
         if len(self.points) > 1:
             self.update_best_fitting_line()
