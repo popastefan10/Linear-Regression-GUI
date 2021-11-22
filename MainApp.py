@@ -206,7 +206,7 @@ class MainApplication(tk.Frame):
         return add_multiple_points_check, check_state
 
     def update_line_clb(self):
-        if len(self.plot is not None):
+        if self.plot is not None:
             self.plot.update_best_fitting_line()
 
     def create_update_line_btn(self):

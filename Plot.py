@@ -131,6 +131,9 @@ class Plot:
     def update_best_fitting_line(self):
         a = self.lin_reg.get_alpha()
         b = self.lin_reg.get_beta()
+        if a is None or b is None:
+            return 
+            
         xmin, xmax, ymin, ymax = plt.axis()
         x = np.arange(xmin - 1, xmax + 1, (xmax - xmin) / 50)
         y = a + b * x
